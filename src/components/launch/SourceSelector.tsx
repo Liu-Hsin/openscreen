@@ -4,6 +4,7 @@ import { MdCheck } from "react-icons/md";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Card } from "../ui/card";
 import styles from "./SourceSelector.module.css";
+import { i18n } from "../../locales";
 
 interface DesktopSource {
   id: string;
@@ -61,7 +62,7 @@ export function SourceSelector() {
       <div className={`h-full flex items-center justify-center ${styles.glassContainer}`} style={{ minHeight: '100vh' }}>
         <div className="text-center">
           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-zinc-600 mx-auto mb-2" />
-          <p className="text-xs text-zinc-300">Loading sources...</p>
+          <p className="text-xs text-zinc-300">{i18n.t('sourceSelector', 'loadingSources')}</p>
         </div>
       </div>
     );
@@ -72,8 +73,8 @@ export function SourceSelector() {
       <div className="flex-1 flex flex-col w-full max-w-xl" style={{ padding: 0 }}>
         <Tabs defaultValue="screens">
           <TabsList className="grid grid-cols-2 mb-3 bg-zinc-900/40 rounded-full">
-            <TabsTrigger value="screens" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-zinc-200 rounded-full text-xs py-1">屏幕</TabsTrigger>
-            <TabsTrigger value="windows" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-zinc-200 rounded-full text-xs py-1">窗口</TabsTrigger>
+            <TabsTrigger value="screens" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-zinc-200 rounded-full text-xs py-1">{i18n.t('sourceSelector', 'screens')}</TabsTrigger>
+            <TabsTrigger value="windows" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-zinc-200 rounded-full text-xs py-1">{i18n.t('sourceSelector', 'windows')}</TabsTrigger>
           </TabsList>
             <div className="h-60 flex flex-col justify-stretch">
             <TabsContent value="screens" className="h-full">
@@ -150,8 +151,8 @@ export function SourceSelector() {
       </div>
       <div className="border-t border-zinc-800 p-2 w-full max-w-xl">
         <div className="flex justify-center gap-2">
-          <Button variant="outline" onClick={() => window.close()} className="px-4 py-1 text-xs bg-zinc-800 border-zinc-700 text-zinc-200 hover:bg-zinc-700">取消</Button>
-          <Button onClick={handleShare} disabled={!selectedSource} className="px-4 py-1 text-xs bg-[#34B27B] text-white hover:bg-[#34B27B]/80 disabled:opacity-50 disabled:bg-zinc-700">分享</Button>
+          <Button variant="outline" onClick={() => window.close()} className="px-4 py-1 text-xs bg-zinc-800 border-zinc-700 text-zinc-200 hover:bg-zinc-700">{i18n.t('common', 'cancel')}</Button>
+          <Button onClick={handleShare} disabled={!selectedSource} className="px-4 py-1 text-xs bg-[#34B27B] text-white hover:bg-[#34B27B]/80 disabled:opacity-50 disabled:bg-zinc-700">{i18n.t('common', 'share')}</Button>
         </div>
       </div>
     </div>

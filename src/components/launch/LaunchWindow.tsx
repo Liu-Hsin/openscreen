@@ -8,6 +8,7 @@ import { MdMonitor } from "react-icons/md";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { FaFolderMinus } from "react-icons/fa6";
 import { FiMinus, FiX } from "react-icons/fi";
+import { i18n } from "../../locales";
 
 export function LaunchWindow() {
   const { recording, toggleRecording } = useScreenRecorder();
@@ -38,7 +39,7 @@ export function LaunchWindow() {
     const s = (seconds % 60).toString().padStart(2, '0');
     return `${m}:${s}`;
   };
-  const [selectedSource, setSelectedSource] = useState("选择窗口");
+  const [selectedSource, setSelectedSource] = useState(i18n.t('launchWindow', 'selectWindow'));
   const [hasSelectedSource, setHasSelectedSource] = useState(false);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export function LaunchWindow() {
           setSelectedSource(source.name);
           setHasSelectedSource(true);
         } else {
-          setSelectedSource("选择窗口");
+          setSelectedSource(i18n.t('launchWindow', 'selectWindow'));
           setHasSelectedSource(false);
         }
       }
@@ -141,7 +142,7 @@ export function LaunchWindow() {
           ) : (
             <>
               <BsRecordCircle size={14} className={hasSelectedSource ? "text-white" : "text-white/50"} />
-              <span className={hasSelectedSource ? "text-white" : "text-white/50"}>开始录制</span>
+              <span className={hasSelectedSource ? "text-white" : "text-white/50"}>{i18n.t('launchWindow', 'startRecording')}</span>
             </>
           )}
         </Button>
@@ -158,7 +159,7 @@ export function LaunchWindow() {
           disabled={recording}
         >
           <FaFolderMinus size={14} className="text-white" />
-          <span className={styles.folderText}>打开文件</span>
+          <span className={styles.folderText}>{i18n.t('launchWindow', 'openFile')}</span>
         </Button>
 
          {/* Separator before hide/close buttons */}
@@ -167,7 +168,7 @@ export function LaunchWindow() {
           variant="link"
           size="icon"
           className={`ml-2 ${styles.electronNoDrag} hudOverlayButton`}
-          title="Hide HUD"
+          title={i18n.t('launchWindow', 'hideHud')}
           onClick={sendHudOverlayHide}
         >
           <FiMinus size={18} style={{ color: '#fff', opacity: 0.7 }} />
@@ -178,7 +179,7 @@ export function LaunchWindow() {
           variant="link"
           size="icon"
           className={`ml-1 ${styles.electronNoDrag} hudOverlayButton`}
-          title="Close App"
+          title={i18n.t('launchWindow', 'closeApp')}
           onClick={sendHudOverlayClose}
         >
           <FiX size={18} style={{ color: '#fff', opacity: 0.7 }} />

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { X, Download, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { ExportProgress } from '@/lib/exporter';
+import { i18n } from '../../locales';
 
 interface ExportDialogProps {
   isOpen: boolean;
@@ -50,8 +51,8 @@ export function ExportDialog({
                   <Download className="w-6 h-6 text-[#34B27B]" />
                 </div>
                 <div>
-                  <span className="text-xl font-bold text-slate-200 block">导出完成</span>
-                  <span className="text-sm text-slate-400">您的视频已准备就绪</span>
+                  <span className="text-xl font-bold text-slate-200 block">{i18n.t('videoEditor', 'exportCompleted')}</span>
+                  <span className="text-sm text-slate-400">{i18n.t('videoEditor', 'yourVideoIsReady')}</span>
                 </div>
               </>
             ) : (
@@ -67,10 +68,10 @@ export function ExportDialog({
                 )}
                 <div>
                   <span className="text-xl font-bold text-slate-200 block">
-                    {error ? '导出失败' : isExporting ? '导出中' : '导出视频'}
+                    {error ? i18n.t('videoEditor', 'exportFailed') : isExporting ? i18n.t('videoEditor', 'exporting') : i18n.t('videoEditor', 'exportVideo')}
                   </span>
                   <span className="text-sm text-slate-400">
-                    {error ? '请重试' : isExporting ? '这可能需要一些时间...' : '准备开始'}
+                    {error ? i18n.t('videoEditor', 'pleaseRetry') : isExporting ? i18n.t('videoEditor', 'mayTakeSomeTime') : i18n.t('videoEditor', 'readyToStart')}
                   </span>
                 </div>
               </>
@@ -103,7 +104,7 @@ export function ExportDialog({
           <div className="space-y-6">
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-medium text-slate-400 uppercase tracking-wider">
-                <span>导出进度</span>
+                <span>{i18n.t('videoEditor', 'exportProgress')}</span>
                 <span className="font-mono text-slate-200">{progress.percentage.toFixed(0)}%</span>
               </div>
               <div className="h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
@@ -116,10 +117,10 @@ export function ExportDialog({
 
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-white/5 rounded-xl p-3 border border-white/5">
-                <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">状态</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">{i18n.t('videoEditor', 'status')}</div>
                 <div className="text-slate-200 font-medium text-sm flex items-center gap-2 h-[28px]">
                   <span className="w-2 h-2 rounded-full bg-[#34B27B] animate-pulse" />
-                  处理中...
+                  {i18n.t('videoEditor', 'processing')}
                 </div>
               </div>
             </div>
@@ -131,7 +132,7 @@ export function ExportDialog({
                   variant="destructive"
                   className="w-full py-6 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30 transition-all rounded-xl"
                 >
-                  取消导出
+                  {i18n.t('videoEditor', 'cancelExport')}
                 </Button>
               </div>
             )}

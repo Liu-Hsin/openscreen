@@ -1,6 +1,7 @@
 import type React from "react";
 import { useEffect, useRef, useImperativeHandle, forwardRef, useState, useMemo, useCallback } from "react";
 import { getAssetPath } from "@/lib/assetPath";
+import { i18n } from "@/locales";
 import { Application, Container, Sprite, Graphics, BlurFilter, Texture, VideoSource } from 'pixi.js';
 import { ZOOM_DEPTH_SCALES, type ZoomRegion, type ZoomFocus, type ZoomDepth, type TrimRegion, type AnnotationRegion } from "./types";
 import { DEFAULT_FOCUS, SMOOTHING_FACTOR, MIN_DELTA } from "./videoPlayback/constants";
@@ -879,7 +880,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(({
         onDurationChange={e => {
           onDurationChange(e.currentTarget.duration);
         }}
-        onError={() => onError('视频加载失败')}
+        onError={() => onError(i18n.t('videoEditor', 'videoLoadFailed'))}
       />
     </div>
   );

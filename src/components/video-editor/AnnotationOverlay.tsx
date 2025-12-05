@@ -3,6 +3,7 @@ import { Rnd } from "react-rnd";
 import type { AnnotationRegion } from "./types";
 import { cn } from "@/lib/utils";
 import { getArrowComponent } from "./ArrowSvgs";
+import { i18n } from "@/locales";
 
 interface AnnotationOverlayProps {
   annotation: AnnotationRegion;
@@ -92,7 +93,7 @@ export function AnnotationOverlay({
         }
         return (
           <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm">
-            无图片
+            {i18n.t('videoEditor', 'noImage')}
           </div>
         );
 
@@ -100,8 +101,8 @@ export function AnnotationOverlay({
         if (!annotation.figureData) {
           return (
             <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm">
-              无箭头数据
-            </div>
+            {i18n.t('videoEditor', 'noArrowData')}
+          </div>
           );
         }
 

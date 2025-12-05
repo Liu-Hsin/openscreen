@@ -30,6 +30,7 @@ import {
 } from "./types";
 import { VideoExporter, type ExportProgress, type ExportQuality } from "@/lib/exporter";
 import { type AspectRatio, getAspectRatioValue } from "@/utils/aspectRatioUtils";
+import { i18n } from "@/locales";
 
 const WALLPAPER_COUNT = 18;
 const WALLPAPER_PATHS = Array.from({ length: WALLPAPER_COUNT }, (_, i) => `/wallpapers/wallpaper${i + 1}.jpg`);
@@ -249,7 +250,7 @@ export default function VideoEditor() {
       startMs: Math.round(span.start),
       endMs: Math.round(span.end),
       type: 'text',
-      content: 'Enter text...',
+      content: i18n.t('videoEditor', 'enterText'),
       position: { ...DEFAULT_ANNOTATION_POSITION },
       size: { ...DEFAULT_ANNOTATION_SIZE },
       style: { ...DEFAULT_ANNOTATION_STYLE },
@@ -309,7 +310,7 @@ export default function VideoEditor() {
         
         // Restore content from type-specific storage
         if (type === 'text') {
-          updatedRegion.content = region.textContent || 'Enter text...';
+          updatedRegion.content = region.textContent || i18n.t('videoEditor', 'enterText');
         } else if (type === 'image') {
           updatedRegion.content = region.imageContent || '';
         } else if (type === 'figure') {
@@ -418,13 +419,13 @@ export default function VideoEditor() {
 
   const handleExport = useCallback(async () => {
     if (!videoPath) {
-      toast.error('No video loaded');
+      toast.error(i18n.t('videoEditor', 'videoNotLoaded'));
       return;
     }
 
     const video = videoPlaybackRef.current?.video;
     if (!video) {
-      toast.error('Video not ready');
+      toast.error(i18n.t('videoEditor', 'videoNotReady'));
       return;
     }
 
@@ -442,7 +443,7 @@ export default function VideoEditor() {
       // Get actual video dimensions to match recording resolution
       const video = videoPlaybackRef.current?.video;
       if (!video) {
-        toast.error('Video not ready');
+        toast.error(i18n.t('videoEditor', 'videoNotReady'));
         return;
       }
       
@@ -572,26 +573,26 @@ export default function VideoEditor() {
         const saveResult = await window.electronAPI.saveExportedVideo(arrayBuffer, fileName);
         
         if (saveResult.cancelled) {
-          toast.info('Export cancelled');
+          toast.info(i18n.t('videoEditor', 'exportCancelled'));
         } else if (saveResult.success) {
-          toast.success(`Video exported successfully to ${saveResult.path}`);
+          toast.success(i18n.t('videoEditor', 'videoExportedSuccessfully', { path: saveResult.path }));
         } else {
-          setExportError(saveResult.message || 'Failed to save video');
-          toast.error(saveResult.message || 'Failed to save video');
+          setExportError(saveResult.message || i18n.t('videoEditor', 'exportVideoFailed'));
+          toast.error(saveResult.message || i18n.t('videoEditor', 'exportVideoFailed'));
         }
       } else {
-        setExportError(result.error || 'Export failed');
-        toast.error(result.error || 'Export failed');
+        setExportError(result.error || i18n.t('videoEditor', 'exportVideoFailed'));
+        toast.error(result.error || i18n.t('videoEditor', 'exportVideoFailed'));
       }
 
       if (wasPlaying) {
         videoPlaybackRef.current?.play();
       }
     } catch (error) {
-      console.error('Export error:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error(i18n.t('videoEditor', 'exportVideoError'), error);
+      const errorMessage = error instanceof Error ? error.message : i18n.t('videoEditor', 'unknownError');
       setExportError(errorMessage);
-      toast.error(`Export failed: ${errorMessage}`);
+      toast.error(i18n.t('videoEditor', 'exportVideoFailedWithError', { error: errorMessage }));
     } finally {
       setIsExporting(false);
       exporterRef.current = null;
@@ -601,7 +602,7 @@ export default function VideoEditor() {
   const handleCancelExport = useCallback(() => {
     if (exporterRef.current) {
       exporterRef.current.cancel();
-      toast.info('Export cancelled');
+      toast.info(i18n.t('videoEditor', 'exportCancelled'));
       setShowExportDialog(false);
       setIsExporting(false);
       setExportProgress(null);
@@ -612,7 +613,7 @@ export default function VideoEditor() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen bg-background">
-        <div className="text-foreground">正在加载视频...</div>
+        <div className="text-foreground">{i18n.t('videoEditor', 'loadingVideo')}</div>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import path from 'node:path'
 import fs from 'node:fs/promises'
 import { createHudOverlayWindow, createEditorWindow, createSourceSelectorWindow } from './windows'
 import { registerIpcHandlers } from './ipc/handlers'
+import { i18n } from './locales'
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -61,7 +62,7 @@ function updateTrayMenu() {
   if (!tray) return;
   const menuTemplate = [
     {
-      label: 'Stop Recording',
+      label: i18n('electron', 'stopRecording'),
       click: () => {
         if (mainWindow && !mainWindow.isDestroyed()) {
           mainWindow.webContents.send('stop-recording-from-tray');

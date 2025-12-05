@@ -5,6 +5,7 @@ import { Trash2, Type, Image as ImageIcon, Upload, Bold, Italic, Underline, Alig
 import { toast } from "sonner";
 import Colorful from '@uiw/react-color-colorful';
 import { hsvaToHex, hexToHsva } from '@uiw/color-convert';
+import { i18n } from "../../locales";
 import type { AnnotationRegion, AnnotationType, ArrowDirection, FigureData } from "./types";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -92,9 +93,9 @@ export function AnnotationSettingsPanel({
     <div className="flex-[2] min-w-0 bg-[#09090b] border border-white/5 rounded-2xl p-4 flex flex-col shadow-xl h-full overflow-y-auto custom-scrollbar">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium text-slate-200">Annotation Settings</span>
+          <span className="text-sm font-medium text-slate-200">{i18n.t('videoEditor', 'annotationSettings')}</span>
           <span className="text-[10px] uppercase tracking-wider font-medium text-[#34B27B] bg-[#34B27B]/10 px-2 py-1 rounded-full">
-              活动
+              {i18n.t('videoEditor', 'enabled')}
           </span>
         </div>
         
@@ -103,28 +104,28 @@ export function AnnotationSettingsPanel({
           <TabsList className="mb-4 bg-white/5 border border-white/5 p-1 w-full grid grid-cols-3 h-auto rounded-xl">
             <TabsTrigger value="text" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all gap-2">
               <Type className="w-4 h-4" />
-              文本
+              {i18n.t('videoEditor', 'text')}
             </TabsTrigger>
             <TabsTrigger value="image" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all gap-2">
               <ImageIcon className="w-4 h-4" />
-              图片
+              {i18n.t('videoEditor', 'image')}
             </TabsTrigger>
             <TabsTrigger value="figure" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all gap-2">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 12h16m0 0l-6-6m6 6l-6 6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              形状
+              {i18n.t('videoEditor', 'figure')}
             </TabsTrigger>
           </TabsList>
 
           {/* Text Content */}
           <TabsContent value="text" className="mt-0 space-y-4">
             <div>
-              <label className="text-xs font-medium text-slate-200 mb-2 block">Text Content</label>
+              <label className="text-xs font-medium text-slate-200 mb-2 block">{i18n.t('videoEditor', 'textContent')}</label>
               <textarea
                 value={annotation.textContent || annotation.content}
                 onChange={(e) => onContentChange(e.target.value)}
-                placeholder="Enter your text..."
+                placeholder={i18n.t('videoEditor', 'enterText')}
                 rows={5}
                 className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-slate-200 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#34B27B] focus:border-transparent resize-none"
               />
@@ -135,13 +136,13 @@ export function AnnotationSettingsPanel({
               {/* Font Family & Size */}
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="text-xs font-medium text-slate-200 mb-2 block">Font Style</label>
+                  <label className="text-xs font-medium text-slate-200 mb-2 block">{i18n.t('videoEditor', 'fontStyle')}</label>
                   <Select 
                     value={annotation.style.fontFamily} 
                     onValueChange={(value) => onStyleChange({ fontFamily: value })}
                   >
                     <SelectTrigger className="w-full bg-white/5 border-white/10 text-slate-200 h-9 text-xs">
-                      <SelectValue placeholder="Select style" />
+                      <SelectValue placeholder={i18n.t('videoEditor', 'selectStyle')} />
                     </SelectTrigger>
                     <SelectContent className="bg-[#1a1a1c] border-white/10 text-slate-200">
                       {FONT_FAMILIES.map((font) => (
@@ -153,13 +154,13 @@ export function AnnotationSettingsPanel({
                   </Select>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-slate-200 mb-2 block">Size</label>
+                  <label className="text-xs font-medium text-slate-200 mb-2 block">{i18n.t('videoEditor', 'fontSize')}</label>
                   <Select 
                     value={annotation.style.fontSize.toString()} 
                     onValueChange={(value) => onStyleChange({ fontSize: parseInt(value) })}
                   >
                     <SelectTrigger className="w-full bg-white/5 border-white/10 text-slate-200 h-9 text-xs">
-                      <SelectValue placeholder="Size" />
+                      <SelectValue placeholder={i18n.t('videoEditor', 'size')} />
                     </SelectTrigger>
                     <SelectContent className="bg-[#1a1a1c] border-white/10 text-slate-200 max-h-[200px]">
                       {FONT_SIZES.map((size) => (
@@ -235,7 +236,7 @@ export function AnnotationSettingsPanel({
               {/* Colors */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-medium text-slate-200 mb-2 block">Text Color</label>
+                  <label className="text-xs font-medium text-slate-200 mb-2 block">{i18n.t('videoEditor', 'textColor')}</label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button 
@@ -268,7 +269,7 @@ export function AnnotationSettingsPanel({
                   </Popover>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-slate-200 mb-2 block">Background</label>
+                  <label className="text-xs font-medium text-slate-200 mb-2 block">{i18n.t('videoEditor', 'backgroundColor')}</label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button 
@@ -336,7 +337,7 @@ export function AnnotationSettingsPanel({
               className="w-full gap-2 bg-white/5 text-slate-200 border-white/10 hover:bg-[#34B27B] hover:text-white hover:border-[#34B27B] transition-all py-8"
             >
               <Upload className="w-5 h-5" />
-              Upload Image
+              上传图片
             </Button>
 
             {annotation.content && annotation.content.startsWith('data:image') && (
@@ -350,13 +351,13 @@ export function AnnotationSettingsPanel({
             )}
 
             <p className="text-xs text-slate-500 text-center leading-relaxed">
-              Supported formats: JPG, PNG, GIF, WebP
+              支持格式：JPG、PNG、GIF、WebP
             </p>
           </TabsContent>
 
           <TabsContent value="figure" className="mt-0 space-y-4">
             <div>
-              <label className="text-xs font-medium text-slate-200 mb-3 block">Arrow Direction</label>
+              <label className="text-xs font-medium text-slate-200 mb-3 block">箭头方向</label>
               <div className="grid grid-cols-4 gap-2">
                 {([
                   'up', 'down', 'left', 'right',
@@ -411,7 +412,7 @@ export function AnnotationSettingsPanel({
             </div>
 
             <div>
-              <label className="text-xs font-medium text-slate-200 mb-2 block">Arrow Color</label>
+              <label className="text-xs font-medium text-slate-200 mb-2 block">箭头颜色</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button 
@@ -457,18 +458,18 @@ export function AnnotationSettingsPanel({
           className="w-full gap-2 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30 transition-all mt-4"
         >
           <Trash2 className="w-4 h-4" />
-          Delete Annotation
+            删除注释
         </Button>
 
         <div className="mt-6 p-3 bg-white/5 rounded-lg border border-white/5">
           <div className="flex items-center gap-2 mb-2 text-slate-300">
             <Info className="w-3.5 h-3.5" />
-            <span className="text-xs font-medium">Shortcuts & Tips</span>
+            <span className="text-xs font-medium">快捷操作 & 提示</span>
           </div>
           <ul className="text-[10px] text-slate-400 space-y-1.5 list-disc pl-3 leading-relaxed">
-            <li>Move playhead to overlapping annotation section and select an item.</li>
-            <li>Use <kbd className="px-1 py-0.5 bg-white/10 rounded text-slate-300 font-mono">Tab</kbd> to cycle through overlapping items.</li>
-            <li>Use <kbd className="px-1 py-0.5 bg-white/10 rounded text-slate-300 font-mono">Shift+Tab</kbd> to cycle backwards.</li>
+            <li>{i18n.t('videoEditor', 'movePlayheadToOverlap')}</li>
+            <li>{i18n.t('videoEditor', 'useTabToSwitch')}</li>
+              <li>{i18n.t('videoEditor', 'useShiftTabToReverseSwitch')}</li>
           </ul>
         </div>
       </div>

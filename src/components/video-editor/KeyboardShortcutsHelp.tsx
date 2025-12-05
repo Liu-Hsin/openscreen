@@ -1,6 +1,7 @@
 import { HelpCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { formatShortcut } from "@/utils/platformUtils";
+import { i18n } from "../../locales";
 
 export function KeyboardShortcutsHelp() {
   const [shortcuts, setShortcuts] = useState({
@@ -27,38 +28,38 @@ export function KeyboardShortcutsHelp() {
     <div className="relative group">
       <HelpCircle className="w-4 h-4 text-slate-500 hover:text-[#34B27B] transition-colors cursor-help" />
       <div className="absolute right-0 top-full mt-2 w-64 bg-[#09090b] border border-white/10 rounded-lg p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl z-50">
-        <div className="text-xs font-semibold text-slate-200 mb-2">键盘快捷键</div>
+        <div className="text-xs font-semibold text-slate-200 mb-2">{i18n.t('videoEditor', 'keyboardShortcuts')}</div>
         <div className="space-y-1.5 text-[10px]">
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">添加缩放</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'addZoom')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">Z</kbd>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">添加注释</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'addAnnotation')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">A</kbd>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">添加关键帧</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'addKeyframe')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">F</kbd>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">添加修剪</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'addTrim')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">T</kbd>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">删除选中项</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'deleteSelected')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">{shortcuts.delete}</kbd>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">平移时间线</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'panTimeline')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">{shortcuts.pan}</kbd>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">缩放时间线</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'zoomTimeline')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">{shortcuts.zoom}</kbd>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">暂停/播放</span>
+            <span className="text-slate-400">{i18n.t('videoEditor', 'pausePlay')}</span>
             <kbd className="px-1 py-0.5 bg-white/5 border border-white/10 rounded text-[#34B27B] font-mono">Space</kbd>
           </div>
         </div>
