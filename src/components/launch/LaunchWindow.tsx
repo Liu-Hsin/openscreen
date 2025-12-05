@@ -38,7 +38,7 @@ export function LaunchWindow() {
     const s = (seconds % 60).toString().padStart(2, '0');
     return `${m}:${s}`;
   };
-  const [selectedSource, setSelectedSource] = useState("Screen");
+  const [selectedSource, setSelectedSource] = useState("选择窗口");
   const [hasSelectedSource, setHasSelectedSource] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export function LaunchWindow() {
           setSelectedSource(source.name);
           setHasSelectedSource(true);
         } else {
-          setSelectedSource("Screen");
+          setSelectedSource("选择窗口");
           setHasSelectedSource(false);
         }
       }
@@ -141,7 +141,7 @@ export function LaunchWindow() {
           ) : (
             <>
               <BsRecordCircle size={14} className={hasSelectedSource ? "text-white" : "text-white/50"} />
-              <span className={hasSelectedSource ? "text-white" : "text-white/50"}>Record</span>
+              <span className={hasSelectedSource ? "text-white" : "text-white/50"}>开始录制</span>
             </>
           )}
         </Button>
@@ -158,7 +158,7 @@ export function LaunchWindow() {
           disabled={recording}
         >
           <FaFolderMinus size={14} className="text-white" />
-          <span className={styles.folderText}>Open</span>
+          <span className={styles.folderText}>打开文件</span>
         </Button>
 
          {/* Separator before hide/close buttons */}

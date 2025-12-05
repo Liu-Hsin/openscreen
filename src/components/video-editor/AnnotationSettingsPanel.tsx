@@ -94,7 +94,7 @@ export function AnnotationSettingsPanel({
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm font-medium text-slate-200">Annotation Settings</span>
           <span className="text-[10px] uppercase tracking-wider font-medium text-[#34B27B] bg-[#34B27B]/10 px-2 py-1 rounded-full">
-            Active
+              活动
           </span>
         </div>
         
@@ -103,17 +103,17 @@ export function AnnotationSettingsPanel({
           <TabsList className="mb-4 bg-white/5 border border-white/5 p-1 w-full grid grid-cols-3 h-auto rounded-xl">
             <TabsTrigger value="text" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all gap-2">
               <Type className="w-4 h-4" />
-              Text
+              文本
             </TabsTrigger>
             <TabsTrigger value="image" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all gap-2">
               <ImageIcon className="w-4 h-4" />
-              Image
+              图片
             </TabsTrigger>
             <TabsTrigger value="figure" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all gap-2">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 12h16m0 0l-6-6m6 6l-6 6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              Arrow
+              形状
             </TabsTrigger>
           </TabsList>
 
@@ -309,7 +309,7 @@ export function AnnotationSettingsPanel({
                             setBgColorHsva({ h: 0, s: 0, v: 0, a: 0 });
                           }}
                         >
-                          Clear Background
+                          清除背景
                         </Button>
                       </div>
                     </PopoverContent>

@@ -50,8 +50,8 @@ export function ExportDialog({
                   <Download className="w-6 h-6 text-[#34B27B]" />
                 </div>
                 <div>
-                  <span className="text-xl font-bold text-slate-200 block">Export Complete</span>
-                  <span className="text-sm text-slate-400">Your video is ready</span>
+                  <span className="text-xl font-bold text-slate-200 block">导出完成</span>
+                  <span className="text-sm text-slate-400">您的视频已准备就绪</span>
                 </div>
               </>
             ) : (
@@ -67,10 +67,10 @@ export function ExportDialog({
                 )}
                 <div>
                   <span className="text-xl font-bold text-slate-200 block">
-                    {error ? 'Export Failed' : isExporting ? 'Exporting Video' : 'Export Video'}
+                    {error ? '导出失败' : isExporting ? '导出中' : '导出视频'}
                   </span>
                   <span className="text-sm text-slate-400">
-                    {error ? 'Please try again' : isExporting ? 'This may take a moment...' : 'Ready to start'}
+                    {error ? '请重试' : isExporting ? '这可能需要一些时间...' : '准备开始'}
                   </span>
                 </div>
               </>
@@ -103,7 +103,7 @@ export function ExportDialog({
           <div className="space-y-6">
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-medium text-slate-400 uppercase tracking-wider">
-                <span>Progress</span>
+                <span>导出进度</span>
                 <span className="font-mono text-slate-200">{progress.percentage.toFixed(0)}%</span>
               </div>
               <div className="h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
@@ -116,10 +116,10 @@ export function ExportDialog({
 
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-white/5 rounded-xl p-3 border border-white/5">
-                <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Status</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">状态</div>
                 <div className="text-slate-200 font-medium text-sm flex items-center gap-2 h-[28px]">
                   <span className="w-2 h-2 rounded-full bg-[#34B27B] animate-pulse" />
-                  Processing
+                  处理中...
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@ export function ExportDialog({
                   variant="destructive"
                   className="w-full py-6 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30 transition-all rounded-xl"
                 >
-                  Cancel Export
+                  取消导出
                 </Button>
               </div>
             )}
@@ -140,7 +140,7 @@ export function ExportDialog({
 
         {showSuccess && (
           <div className="text-center py-4 animate-in zoom-in-95">
-            <p className="text-lg text-slate-200 font-medium">Video saved successfully!</p>
+            <p className="text-lg text-slate-200 font-medium"> 导出完成！</p>
           </div>
         )}
       </div>

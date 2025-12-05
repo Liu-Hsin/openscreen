@@ -101,7 +101,7 @@ export default function Item({
               <>
                 <Scissors className="w-3.5 h-3.5" />
                 <span className="text-[11px] font-semibold tracking-tight">
-                  Trim
+                  裁剪
                 </span>
               </>
             ) : (

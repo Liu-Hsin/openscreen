@@ -92,7 +92,7 @@ export function AnnotationOverlay({
         }
         return (
           <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm">
-            No image
+            无图片
           </div>
         );
 
@@ -100,7 +100,7 @@ export function AnnotationOverlay({
         if (!annotation.figureData) {
           return (
             <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm">
-              No arrow data
+              无箭头数据
             </div>
           );
         }

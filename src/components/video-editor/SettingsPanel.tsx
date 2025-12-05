@@ -161,7 +161,7 @@ export function SettingsPanel({
     const validTypes = ['image/jpeg', 'image/jpg'];
     if (!validTypes.includes(file.type)) {
       toast.error('Invalid file type', {
-        description: 'Please upload a JPG or JPEG image file.',
+        description: '请上传 JPG 或 JPEG 格式的图片文件。',
       });
       event.target.value = '';
       return;
@@ -174,13 +174,13 @@ export function SettingsPanel({
       if (dataUrl) {
         setCustomImages(prev => [...prev, dataUrl]);
         onWallpaperChange(dataUrl);
-        toast.success('Custom image uploaded successfully!');
+        toast.success('自定义图片上传成功！');
       }
     };
 
     reader.onerror = () => {
-      toast.error('Failed to upload image', {
-        description: 'There was an error reading the file.',
+      toast.error('上传图片失败', {
+        description: '读取文件时出错。',
       });
     };
 
@@ -221,11 +221,11 @@ export function SettingsPanel({
     <div className="flex-[2] min-w-0 bg-[#09090b] border border-white/5 rounded-2xl p-4 flex flex-col shadow-xl h-full overflow-y-auto custom-scrollbar">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium text-slate-200">Zoom Level</span>
+          <span className="text-sm font-medium text-slate-200">缩放级别</span>
           <div className="flex items-center gap-3">
             {zoomEnabled && selectedZoomDepth && (
               <span className="text-[10px] uppercase tracking-wider font-medium text-[#34B27B] bg-[#34B27B]/10 px-2 py-1 rounded-full">
-                {ZOOM_DEPTH_OPTIONS.find(o => o.depth === selectedZoomDepth)?.label} Active
+                {ZOOM_DEPTH_OPTIONS.find(o => o.depth === selectedZoomDepth)?.label} 已启用
               </span>
             )}
             <KeyboardShortcutsHelp />
@@ -255,7 +255,7 @@ export function SettingsPanel({
           })}
         </div>
         {!zoomEnabled && (
-          <p className="text-xs text-slate-500 mt-3 text-center">Select a zoom region in the timeline to adjust depth.</p>
+          <p className="text-xs text-slate-500 mt-3 text-center">在时间线中选择缩放区域以调整深度</p>
         )}
         {zoomEnabled && (
           <Button
@@ -265,7 +265,7 @@ export function SettingsPanel({
             className="mt-4 w-full gap-2 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30 transition-all"
           >
             <Trash2 className="w-4 h-4" />
-            Delete Zoom Region
+            删除缩放区域
           </Button>
         )}
       </div>
@@ -274,7 +274,7 @@ export function SettingsPanel({
         <div className="grid grid-cols-2 gap-3">
           {/* Motion Blur Switch */}
           <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
-            <div className="text-xs font-medium text-slate-200">Motion Blur</div>
+            <div className="text-xs font-medium text-slate-200">运动模糊</div>
             <Switch
               checked={motionBlurEnabled}
               onCheckedChange={onMotionBlurChange}
@@ -283,7 +283,7 @@ export function SettingsPanel({
           </div>
           {/* Blur Background Switch */}
           <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
-            <div className="text-xs font-medium text-slate-200">Blur</div>
+            <div className="text-xs font-medium text-slate-200">模糊背景</div>
             <Switch
               checked={showBlur}
               onCheckedChange={onBlurChange}
@@ -298,7 +298,7 @@ export function SettingsPanel({
           {/* Drop Shadow Slider */}
           <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
             <div className="flex items-center justify-between">
-              <div className="text-xs font-medium text-slate-200">Shadow</div>
+              <div className="text-xs font-medium text-slate-200">阴影强度</div>
               <span className="text-[10px] text-slate-400 font-mono">{Math.round(shadowIntensity * 100)}%</span>
             </div>
             <Slider
@@ -313,7 +313,7 @@ export function SettingsPanel({
           {/* Corner Roundness Slider */}
           <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
             <div className="flex items-center justify-between">
-              <div className="text-xs font-medium text-slate-200">Roundness</div>
+              <div className="text-xs font-medium text-slate-200">圆角半径</div>
               <span className="text-[10px] text-slate-400 font-mono">{borderRadius}px</span>
             </div>
             <Slider
@@ -328,7 +328,7 @@ export function SettingsPanel({
           {/* Padding Slider */}
           <div className="p-2.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
             <div className="flex items-center justify-between">
-              <div className="text-xs font-medium text-slate-200">Padding</div>
+              <div className="text-xs font-medium text-slate-200">内边距</div>
               <span className="text-[10px] text-slate-400 font-mono">{padding}%</span>
             </div>
             <Slider
@@ -350,7 +350,7 @@ export function SettingsPanel({
           className="w-full gap-2 bg-white/5 text-slate-200 border-white/10 hover:bg-white/10 hover:border-white/20 hover:text-white h-9 transition-all"
         >
           <Crop className="w-4 h-4" />
-          Crop Video
+          裁剪视频
         </Button>
       </div>
       
@@ -363,8 +363,8 @@ export function SettingsPanel({
           <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[60] bg-[#09090b] rounded-2xl shadow-2xl border border-white/10 p-8 w-[90vw] max-w-5xl max-h-[90vh] overflow-auto animate-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <span className="text-xl font-bold text-slate-200">Crop Video</span>
-                <p className="text-sm text-slate-400 mt-2">Drag on each side to adjust the crop area</p>
+                <span className="text-xl font-bold text-slate-200">裁剪视频</span>
+                <p className="text-sm text-slate-400 mt-2">拖动每个边以调整裁剪区域</p>
               </div>
               <Button
                 variant="ghost"
@@ -387,7 +387,7 @@ export function SettingsPanel({
                 size="lg"
                 className="bg-[#34B27B] hover:bg-[#34B27B]/90 text-white"
               >
-                Done
+                完成
               </Button>
             </div>
           </div>
@@ -396,9 +396,9 @@ export function SettingsPanel({
 
       <Tabs defaultValue="image" className="flex-1 flex flex-col min-h-0">
         <TabsList className="mb-4 bg-white/5 border border-white/5 p-1 w-full grid grid-cols-3 h-auto rounded-xl">
-          <TabsTrigger value="image" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all">Image</TabsTrigger>
-          <TabsTrigger value="color" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all">Color</TabsTrigger>
-          <TabsTrigger value="gradient" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all">Gradient</TabsTrigger>
+          <TabsTrigger value="image" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all">自定义图片</TabsTrigger>
+          <TabsTrigger value="color" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all">颜色</TabsTrigger>
+          <TabsTrigger value="gradient" className="data-[state=active]:bg-[#34B27B] data-[state=active]:text-white text-slate-400 py-2 rounded-lg transition-all">渐变</TabsTrigger>
         </TabsList>
         
         <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2">
@@ -417,7 +417,7 @@ export function SettingsPanel({
               className="w-full gap-2 bg-white/5 text-slate-200 border-white/10 hover:bg-[#34B27B] hover:text-white hover:border-[#34B27B] transition-all"
             >
               <Upload className="w-4 h-4" />
-              Upload Custom Image
+              上传自定义图片
             </Button>
 
             <div className="grid grid-cols-6 gap-2.5">
@@ -517,7 +517,7 @@ export function SettingsPanel({
       </Tabs>
 
       <div className="mt-4 pt-4 border-t border-white/5">
-        <div className="mb-2 text-xs font-medium text-slate-400">Export Quality</div>
+        <div className="mb-2 text-xs font-medium text-slate-400">导出质量</div>
         {/* Export Quality Button Group */}
         <div className="mb-2.5 bg-white/5 border border-white/5 p-1 w-full grid grid-cols-3 h-auto rounded-xl">
           <button
@@ -529,7 +529,7 @@ export function SettingsPanel({
                 : "text-slate-400 hover:text-slate-200"
             )}
           >
-            Medium
+            中等
           </button>
           <button
             onClick={() => onExportQualityChange?.('good')}
@@ -540,7 +540,7 @@ export function SettingsPanel({
                 : "text-slate-400 hover:text-slate-200"
             )}
           >
-            Good
+            较好
           </button>
           <button
             onClick={() => onExportQualityChange?.('source')}
@@ -551,7 +551,7 @@ export function SettingsPanel({
                 : "text-slate-400 hover:text-slate-200"
             )}
           >
-            Source
+            原始质量
           </button>
         </div>
         
@@ -562,7 +562,7 @@ export function SettingsPanel({
           className="w-full py-6 text-lg font-semibold flex items-center justify-center gap-3 bg-[#34B27B] text-white rounded-xl shadow-lg shadow-[#34B27B]/20 hover:bg-[#34B27B]/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           <Download className="w-5 h-5" />
-          <span>Export Video</span>
+          <span>导出视频</span>
         </Button>
         <div className="flex gap-2 mt-4">
           <button
@@ -573,7 +573,7 @@ export function SettingsPanel({
             className="flex-1 flex items-center justify-center gap-2 text-xs py-2"
           >
             <Bug className="w-3 h-3 text-[#34B27B]" />
-            <span>Report a Bug</span>
+            <span>报告问题</span>
           </button>
           <button
             type="button"
@@ -583,7 +583,7 @@ export function SettingsPanel({
             className="flex-1 flex items-center justify-center gap-2 text-xs"
           >
             <GiHearts className="w-3 h-3 text-red-500" />
-            <span>Support my work</span>
+            <span>支持我的工作</span>
           </button>
         </div>
       </div>
